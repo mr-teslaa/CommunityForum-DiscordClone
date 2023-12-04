@@ -1,0 +1,21 @@
+<h3>Recent Activity</h3>
+<hr>
+{% for message in room_messages %}
+    <div>
+        <small>
+            <a href="{% url 'user-profile' message.user.id%}">@{{ message.user }}</a> {{ message.created | timesince }}
+        </small>
+        <small>
+            replied to "{{ message.room }}"
+        </small>
+        <p>
+            <!-- we are not using {{ message.body }} here because it will show the whole message here. as our Message table have a functionality to show only first 50 character ( def __str__(self): return self.body[0:50] ) we could now only call the "{{ message }}", that will only show us only 50 character of the body -->
+            <!-- {{ message.body }} -->
+            {{ message }}
+        </p>
+        {% if request.user == message.user %}
+        <a href="{% url 'delete-message' message.id %}">Delete</a>
+        {% endif %}
+        <hr>
+    </div>
+{% endfor %}

@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+
+{% block body %}
+<style>
+    .profile-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+
+    .profile-container > .topics,
+    .profile-container > .rooms {
+        margin-right: 3rem;
+    }
+</style>
+
+<h1>{{ user.username }} </h1>
+<!-- START - PROFILE CONTANIER -->
+<div class="profile-container">
+    <!-- START - BROWSE TOPICS -->
+    <div class="topics">
+        {% include 'base/components/topics_component.html' %}
+    </div>
+    <!-- END - BROWSE TOPICS -->
+    
+    <!-- START - ALL OPEN ROOMS -->
+    <div class="rooms">    
+        {% include 'base/components/feed_component.html' %}
+    </div>
+    <!-- START - ALL OPEN ROOMS -->
+    
+    <!-- START - RECENT ACTIVITY -->
+    <div class="activity">
+        {% include 'base/components/activity_component.html' %}
+    </div>
+    <!-- START - RECENT ACTIVITY -->
+</div>
+<!-- END - PROFILE CONTANIER -->
+{% endblock %}

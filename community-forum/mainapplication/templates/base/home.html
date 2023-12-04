@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+{% block body %}
+<style>
+    .home-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+
+    .home-container > .topics,
+    .home-container > .rooms {
+        margin-right: 3rem;
+    }
+</style>
+
+<div class="home-container">
+    <!-- START - BROWSE TOPICS -->
+    <div class="topics">
+        {% include 'base/components/topics_component.html' %}
+    </div>
+    <!-- END - BROWSE TOPICS -->
+
+    <!-- START - ALL OPEN ROOMS -->
+    <div class="rooms">    
+        <div>
+            <h3>All Open rooms</h3>
+            <p>{{ room_count }} room available</p>
+            <a href="{% url 'new-room' %}">
+                + New Room
+            </a>
+        </div>
+
+        {% include 'base/components/feed_component.html' %}
+    </div>
+    <!-- START - ALL OPEN ROOMS -->
+
+    <!-- START - RECENT ACTIVITY -->
+    <div class="activity">
+        {% include 'base/components/activity_component.html' %}
+    </div>
+    <!-- START - RECENT ACTIVITY -->
+</div>
+{% endblock %}
