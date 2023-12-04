@@ -141,7 +141,11 @@ def createRoom(request):
     if request.method == 'POST':
         form = RoomForm(request.POST)
         if form.is_valid():
-            form.save()
+            # GETTING THE INSTANCE OF THE FORM (ROOM FORM) 
+            # WE WILL EDIT IT UPDATE IT LATER. LIKE WE NEED TO ADD DEFAULT HOST TO DATABASE AS WE ARE NOT HAVE ANY OPTION FOR SELECT THE HOST ON FORM.
+            room = form.save(commit=False)
+            room.host = request.user
+            room.save()
             return redirect('home')
     context = {'form': form}
 
